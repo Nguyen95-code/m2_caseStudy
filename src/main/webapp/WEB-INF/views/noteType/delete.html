@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete NoteType</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Delete noteType</h1>
+<h2>Are you sure?</h2>
+<form th:action="@{/delete-noteType/__${noteType.id}__}" th:object="${noteType}" method="post">
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td th:text="${noteType.id}"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${noteType.typeName}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td th:text="${noteType.description}"></td>
+        </tr>
+        <tr>
+            <td><a href="/noteTypes">Cancel</a></td>
+            <td><input type="submit" value="Delete noteType"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

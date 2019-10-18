@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>noteTypes</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<body>
+<a href="/create-noteType">Create new NoteType</a>
+<h1>NoteTypes</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="noteType : ${noteTypes}">
+        <tr>
+            <td th:text="${noteType.typeName}"></td>
+            <td th:text="${noteType.description}"></td>
+            <td><a th:href="@{/edit-noteType/__${noteType.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-noteType/__${noteType.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

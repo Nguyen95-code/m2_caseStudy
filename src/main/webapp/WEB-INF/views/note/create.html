@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create note</title>
+</head>
+<style>
+    * {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    form {
+        position: relative;
+        /*left: 40%;*/
+        /*!*top: 200px;*!*/
+    }
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        /*margin: 8px 0;*/
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Create Note</h1>
+<p>
+    <a href="/notes">Note list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-note}" th:object="${note}" method="post" >
+    <table>
+        <tr>
+            <td>Title</td>
+            <td><textarea cols="30" rows="2" input type="text" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td><textarea cols="30" rows="15" input type="text" th:field="*{content}"/></td>
+        </tr>
+        <tr>
+            <td>NoteType:</td>
+            <td>
+                <select th:field="*{noteType}">
+                    <option th:each="n : ${noteTypes}" th:value="${n.id}" th:text="${n.typeName}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create note"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
